@@ -57,4 +57,3 @@ jobs:
               core.setFailed(`Failed to publish release: ${error.message}`);
               throw error;
             }
-
