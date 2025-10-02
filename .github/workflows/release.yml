@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, closed]
     branches:
-      - production
+      - develop
 permissions:
   contents: write
   pull-requests: write
@@ -15,7 +15,7 @@ jobs:
       - uses: release-drafter/release-drafter@v6
         with:
           config-name: release-drafter.yml
-          commitish: production
+          commitish: develop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   publish_draft:
@@ -57,4 +57,5 @@ jobs:
               core.setFailed(`Failed to publish release: ${error.message}`);
               throw error;
             }
+
 
