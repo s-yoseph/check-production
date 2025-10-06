@@ -26,7 +26,7 @@ categories:
     labels:
       - 'Task'
 
-change-template: '- $COMMIT_TITLE @$AUTHOR'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 
 version-resolver:
   major:
@@ -48,4 +48,5 @@ version-resolver:
 
 exclude-labels:
   - 'Skip-Changelog'
+
 
