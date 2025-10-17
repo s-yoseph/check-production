@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, closed]
     branches:
-      - develop
+      - production
 permissions:
   contents: write
   pull-requests: write
@@ -15,7 +15,7 @@ jobs:
       - uses: release-drafter/release-drafter@v6
         with:
           config-name: release-drafter.yml
-          commitish: develop
+          commitish: production
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   publish_draft:
