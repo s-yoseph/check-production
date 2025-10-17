@@ -50,12 +50,13 @@ jobs:
                 repo: context.repo.repo,
                 release_id: draft.id,
                 draft: false,
-                prerelease: false
+                prerelease: true
               });
               console.log(`✅ Draft release "${draft.tag_name}" published successfully!`);
             } catch (error) {
               core.setFailed(`Failed to publish release: ${error.message}`);
               throw error;
             }
+
 
 
