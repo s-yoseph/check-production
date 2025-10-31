@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, closed]
     branches:
-      - production
+      - develop
 permissions:
   contents: write
   pull-requests: write
@@ -15,9 +15,11 @@ jobs:
       - uses: release-drafter/release-drafter@v6
         with:
           config-name: release-drafter.yml
-          commitish: production
+          commitish: develop
+          prerelease: true 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   publish_draft:
     if: >
       github.event_name == 'pull_request' &&
@@ -29,6 +31,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Publish latest draft release
         uses: actions/github-script@v7
         env:
@@ -50,13 +53,11 @@ jobs:
                 repo: context.repo.repo,
                 release_id: draft.id,
                 draft: false,
-                prerelease: true
+                prerelease: true,
+                name: `${draft.tag_name} - develop`
               });
-              console.log(`✅ Draft release "${draft.tag_name}" published successfully!`);
+              console.log(`✅ Draft release "${draft.tag_name}" published successfully as "${draft.tag_name} - develop"!`);
             } catch (error) {
               core.setFailed(`Failed to publish release: ${error.message}`);
               throw error;
             }
-
-
-
